@@ -19,9 +19,10 @@ namespace SnakeMess
 	{
 		public static void Main(string[] arguments)
 		{
+			bool originalCursorVisible = Console.CursorVisible; // Save the state
+			Console.Clear(); // Lets clear the console window
 			bool gg = false, pause = false, inUse = false;
-			short newDir = 2; // 0 = up, 1 = right, 2 = down, 3 = left
-			short last = newDir;
+			Coordinate direction = Coordinate.DOWN;
 			int boardW = Console.WindowWidth, boardH = Console.WindowHeight;
 			Random rng = new Random();
 			Coordinate app = new Coordinate();
@@ -31,14 +32,8 @@ namespace SnakeMess
 			Console.Title = "Westerdals Oslo ACT - SNAKE";
 			Console.ForegroundColor = ConsoleColor.Green; Console.SetCursorPosition(10, 10); Console.Write("@");
 			while (true) {
-				app.X = rng.Next(0, boardW); app.Y = rng.Next(0, boardH);
-				bool spot = true;
-				foreach (Coordinate i in snake)
-					if (i.X == app.X && i.Y == app.Y) {
-						spot = false;
-						break;
-					}
-				if (spot) {
+				app = new Coordinate(rng.Next(0, boardW), rng.Next(0, boardH));
+				if (!snake.Any(snakePart => snakePart.X == app.X && snakePart.Y == app.Y)) {
 					Console.ForegroundColor = ConsoleColor.Green; Console.SetCursorPosition(app.X, app.Y); Console.Write("$");
 					break;
 				}
@@ -52,14 +47,14 @@ namespace SnakeMess
 						gg = true;
 					else if (cki.Key == ConsoleKey.Spacebar)
 						pause = !pause;
-					else if (cki.Key == ConsoleKey.UpArrow && last != 2)
-						newDir = 0;
-					else if (cki.Key == ConsoleKey.RightArrow && last != 3)
-						newDir = 1;
-					else if (cki.Key == ConsoleKey.DownArrow && last != 0)
-						newDir = 2;
-					else if (cki.Key == ConsoleKey.LeftArrow && last != 1)
-						newDir = 3;
+					else if (cki.Key == ConsoleKey.UpArrow && !direction.isOpposite(Coordinate.UP))
+						direction = Coordinate.UP;
+					else if (cki.Key == ConsoleKey.RightArrow && !direction.isOpposite(Coordinate.RIGHT))
+						direction = Coordinate.RIGHT;
+					else if (cki.Key == ConsoleKey.DownArrow && !direction.isOpposite(Coordinate.DOWN))
+						direction = Coordinate.DOWN;
+					else if (cki.Key == ConsoleKey.LeftArrow && !direction.isOpposite(Coordinate.LEFT))
+						direction = Coordinate.LEFT;
 				}
 				if (!pause) {
 					if (t.ElapsedMilliseconds < 100)
@@ -68,20 +63,7 @@ namespace SnakeMess
 					Coordinate tail = new Coordinate(snake.First());
 					Coordinate head = new Coordinate(snake.Last());
 					Coordinate newH = new Coordinate(head);
-					switch (newDir) {
-						case 0:
-							newH.Y -= 1;
-							break;
-						case 1:
-							newH.X += 1;
-							break;
-						case 2:
-							newH.Y += 1;
-							break;
-						default:
-							newH.X -= 1;
-							break;
-					}
+					newH += direction;
 					if (newH.X < 0 || newH.X >= boardW)
 						gg = true;
 					else if (newH.Y < 0 || newH.Y >= boardH)
@@ -92,7 +74,7 @@ namespace SnakeMess
 							gg = true;
 						else {
 							while (true) {
-								app.X = rng.Next(0, boardW); app.Y = rng.Next(0, boardH);
+								app = new Coordinate(rng.Next(0, boardW), rng.Next(0, boardH));
 								bool found = true;
 								foreach (Coordinate i in snake)
 									if (i.X == app.X && i.Y == app.Y) {
@@ -126,10 +108,12 @@ namespace SnakeMess
 						}
 						snake.Add(newH);
 						Console.ForegroundColor = ConsoleColor.Yellow; Console.SetCursorPosition(newH.X, newH.Y); Console.Write("@");
-						last = newDir;
 					}
 				}
 			}
+			// Set the cursor visible back to the original value to leave the console in a usable state...
+			Console.CursorVisible = originalCursorVisible;
+			Console.Clear();
 		}
 	}
 }

@@ -30,7 +30,9 @@ namespace SnakeMess
 			snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10));
 			Console.CursorVisible = false;
 			Console.Title = "Westerdals Oslo ACT - SNAKE";
-			Console.ForegroundColor = ConsoleColor.Green; Console.SetCursorPosition(10, 10); Console.Write("@");
+			Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(10, 10);
+            //Console.Write("@");
 			while (true) {
 				app = new Coordinate(rng.Next(0, boardW), rng.Next(0, boardH));
 				if (!snake.Any(snakePart => snakePart.X == app.X && snakePart.Y == app.Y)) {

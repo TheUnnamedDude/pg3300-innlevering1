@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Snake.cs" />
+    <Compile Include="Food.cs" />
     <Compile Include="SnakeMess.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

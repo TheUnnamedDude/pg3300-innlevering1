@@ -32,7 +32,7 @@ namespace SnakeMess
 			Console.Title = "Westerdals Oslo ACT - SNAKE";
 			Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(10, 10);
-            //Console.Write("@");
+            Console.Write("@");
 			while (true) {
 				app = new Coordinate(rng.Next(0, boardW), rng.Next(0, boardH));
 				if (!snake.Any(snakePart => snakePart.X == app.X && snakePart.Y == app.Y)) {
@@ -101,11 +101,15 @@ namespace SnakeMess
 					}
 					if (!gg) {
 						Console.ForegroundColor = ConsoleColor.Yellow;
-						Console.SetCursorPosition(head.X, head.Y); Console.Write("0");
+						Console.SetCursorPosition(head.X, head.Y);
+                        Console.Write("0");
 						if (!inUse) {
-							Console.SetCursorPosition(tail.X, tail.Y); Console.Write(" ");
+							Console.SetCursorPosition(tail.X, tail.Y);
+                            Console.Write(" ");
 						} else {
-							Console.ForegroundColor = ConsoleColor.Green; Console.SetCursorPosition(app.X, app.Y); Console.Write("$");
+							Console.ForegroundColor = ConsoleColor.Green;
+                            Console.SetCursorPosition(app.X, app.Y);
+                            Console.Write("$");
 							inUse = false;
 						}
 						snake.Add(newH);

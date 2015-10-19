@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SnakeMess
 {
-    class Class1
+    class GameController
     {
     }
 }

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace SnakeMess
 {
-    class Class1
+    class GameBoard
     {
+        int height, width;
+        List<Food> FoodList;
+        bool paused;
     }
 }

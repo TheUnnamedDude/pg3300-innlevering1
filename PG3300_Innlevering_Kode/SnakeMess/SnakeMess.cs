@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
@@ -15,15 +15,6 @@ using System.Diagnostics;
 //
 namespace SnakeMess
 {
-	class Coord
-	{
-		public const string Ok = "Ok";
-
-		public int X; public int Y;
-		public Coord(int x = 0, int y = 0) { X = x; Y = y; }
-		public Coord(Coord input) { X = input.X; Y = input.Y; }
-	}
-
 	class SnakeMess
 	{
 		public static void Main(string[] arguments)
@@ -33,16 +24,16 @@ namespace SnakeMess
 			short last = newDir;
 			int boardW = Console.WindowWidth, boardH = Console.WindowHeight;
 			Random rng = new Random();
-			Coord app = new Coord();
-			List<Coord> snake = new List<Coord>();
-			snake.Add(new Coord(10, 10)); snake.Add(new Coord(10, 10)); snake.Add(new Coord(10, 10)); snake.Add(new Coord(10, 10));
+			Coordinate app = new Coordinate();
+			List<Coordinate> snake = new List<Coordinate>();
+			snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10)); snake.Add(new Coordinate(10, 10));
 			Console.CursorVisible = false;
 			Console.Title = "Westerdals Oslo ACT - SNAKE";
 			Console.ForegroundColor = ConsoleColor.Green; Console.SetCursorPosition(10, 10); Console.Write("@");
 			while (true) {
 				app.X = rng.Next(0, boardW); app.Y = rng.Next(0, boardH);
 				bool spot = true;
-				foreach (Coord i in snake)
+				foreach (Coordinate i in snake)
 					if (i.X == app.X && i.Y == app.Y) {
 						spot = false;
 						break;
@@ -74,9 +65,9 @@ namespace SnakeMess
 					if (t.ElapsedMilliseconds < 100)
 						continue;
 					t.Restart();
-					Coord tail = new Coord(snake.First());
-					Coord head = new Coord(snake.Last());
-					Coord newH = new Coord(head);
+					Coordinate tail = new Coordinate(snake.First());
+					Coordinate head = new Coordinate(snake.Last());
+					Coordinate newH = new Coordinate(head);
 					switch (newDir) {
 						case 0:
 							newH.Y -= 1;
@@ -103,7 +94,7 @@ namespace SnakeMess
 							while (true) {
 								app.X = rng.Next(0, boardW); app.Y = rng.Next(0, boardH);
 								bool found = true;
-								foreach (Coord i in snake)
+								foreach (Coordinate i in snake)
 									if (i.X == app.X && i.Y == app.Y) {
 										found = false;
 										break;
@@ -117,7 +108,7 @@ namespace SnakeMess
 					}
 					if (!inUse) {
 						snake.RemoveAt(0);
-						foreach (Coord x in snake)
+						foreach (Coordinate x in snake)
 							if (x.X == newH.X && x.Y == newH.Y) {
 								// Death by accidental self-cannibalism.
 								gg = true;

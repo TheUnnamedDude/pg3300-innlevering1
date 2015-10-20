@@ -11,47 +11,28 @@ namespace SnakeMess
 
         public bool Paused {get; private set;}
         public bool GameOver {get; set;}
+        Random rng = new Random();
 
         public int Width {get; private set;}
         public int Height {get; private set;}
         private Snake _snake;
         List<Food> FoodList;
-<<<<<<< HEAD
         Snake snake;
         bool pause, gameOver;
 
-        public bool deathCheck()
-        {
-            return boundCheck() || snake.collisionCheck(snake.HeadPosition);
-
-        }
-        public bool boundCheck()
-        {
-            if (snake.HeadPosition.X >= width || snake.HeadPosition.X <= 0 || snake.HeadPosition.Y >= height || snake.HeadPosition.Y <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        public void keyListener()
-        {
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo cki = Console.ReadKey(true);
-                if (cki.Key == ConsoleKey.Escape)
-                    gameOver = true;
-                else if (cki.Key == ConsoleKey.Spacebar)
-                    pause = !pause;
-            } else
-            {
-                snake.moveSnake();
-            }
-        }
         public void spawnFood()
         {
-           
+            var test = FoodList.Count();
+            while (test <= 0 )
+            {
+                Coordinate temp = new Coordinate(rng.Next(0, Width), rng.Next(0, Height));
+                if (!snake.Body.Any(snakePart => (snakePart.X == temp.X && snakePart.Y == temp.Y))) ;
+                {
+                    FoodList.Add(new Food(temp));
+                    FoodList.Last().Write();
+                }
+            }
         }
-=======
         public GameBoard(int width, int height)
         {
             this.Width = width;
@@ -60,15 +41,17 @@ namespace SnakeMess
 
         public void StartGame()
         {
+            FoodList = new List<Food>();
             _snake = new Snake(this);
             Paused = false;
             GameOver = false;
 
             while (!GameOver)
             {
+                
                 if (Console.KeyAvailable)
                 {
-                    var consoleKey = Console.ReadKey(true);
+                    ConsoleKeyInfo consoleKey = Console.ReadKey(true);
                     if (consoleKey.Key == ConsoleKey.Escape)
                     {
                         GameOver = true;
@@ -76,19 +59,20 @@ namespace SnakeMess
                     }
                     else if (consoleKey.Key == ConsoleKey.Spacebar)
                     {
-                        Paused = true;
+                        Paused = !Paused;
                     }
                     if (Paused)
                     {
                         Thread.Sleep(300);
+                        Paused = !Paused;
                         continue;
                     }
                     _snake.setDirection(consoleKey);
                 }
                 _snake.moveSnake();
+                spawnFood();
                 Thread.Sleep(100);
             }
         }
->>>>>>> 2bf947c6bd576ffddffe10014c154372753b3ba3
     }
 }

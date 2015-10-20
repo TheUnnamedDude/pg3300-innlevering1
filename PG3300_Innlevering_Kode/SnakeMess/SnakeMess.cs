@@ -59,7 +59,7 @@ namespace SnakeMess
 						direction = Coordinate.LEFT;
 				}
 				if (!pause) {
-					if (t.ElapsedMilliseconds < 100)
+					if (t.ElapsedMilliseconds < 500)
 						continue;
 					t.Restart();
 					Coordinate tail = new Coordinate(snake.First());

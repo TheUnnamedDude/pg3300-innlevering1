@@ -3,6 +3,10 @@
     class Food
     {
         char foodSymbol = '$';
-        Coordinate position { get; set; }
+        Coordinate position;
+        public Coordinate Position
+        {
+            get; set;
+        }
     }
 }

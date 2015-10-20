@@ -17,7 +17,7 @@ namespace SnakeMess
 {
 	class SnakeMess
 	{
-		public static void Main(string[] arguments)
+		public static void ___Main(string[] arguments)
 		{
 			bool originalCursorVisible = Console.CursorVisible; // Save the state
 			Console.Clear(); // Lets clear the console window

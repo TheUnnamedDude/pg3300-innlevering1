@@ -11,7 +11,6 @@ namespace SnakeMess
 
         public bool Paused {get; private set;}
         public bool GameOver {get; set;}
-        Random rng = new Random();
 
         public int Width {get; private set;}
         public int Height {get; private set;}
@@ -22,11 +21,10 @@ namespace SnakeMess
         public void SpawnFood()
         {
             if (_snake.Body.Count() + FoodList.Count() + 2 >= Width * Height)
-            {
                 return;
-            }
             while (true)
             {
+                Random rng = new Random();
                 Coordinate foodCoord = new Coordinate(rng.Next(0, Width), rng.Next(0, Height));
                 if (!_snake.Body.Any(snakePart => snakePart.compare(foodCoord)))
                 {
@@ -52,33 +50,27 @@ namespace SnakeMess
 
         public void StartGame()
         {
-            FoodList = new List<Food>();
             _snake = new Snake(this);
+            FoodList = new List<Food>();
             Paused = false;
             GameOver = false;
             SpawnFood();
 
+            // Liker ikke game-loop koden, forslag?
             while (!GameOver)
             {
-
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo consoleKey = Console.ReadKey(true);
                     if (consoleKey.Key == ConsoleKey.Escape)
-                    {
                         GameOver = true;
-                        break;
-                    }
                     else if (consoleKey.Key == ConsoleKey.Spacebar)
-                    {
                         Paused = !Paused;
-                    }
                     _snake.setDirection(consoleKey);
                 }
                 if (Paused)
-                {
                     continue;
-                }
+
                 _snake.moveSnake();
                 Thread.Sleep(100);
             }

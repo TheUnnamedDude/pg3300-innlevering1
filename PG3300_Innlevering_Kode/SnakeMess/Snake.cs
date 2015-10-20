@@ -7,38 +7,34 @@ namespace SnakeMess
 {
     class Snake
     {
-        List<Coordinate> body;
         public static readonly char HEAD_SYMBOL = '@';
         public static readonly char TAIL_SYMBOL = '0';
         public static readonly ConsoleColor SNAKE_COLOR = ConsoleColor.Yellow;
 
-        Coordinate direction = Coordinate.DOWN;
+        private Coordinate _direction = Coordinate.DOWN;
         private GameBoard _gameBoard;
 
         public List<Coordinate> Body
         {
-            get
-            {
-                return body;
-            }
+            get; private set;
         }
         public Coordinate HeadPosition {
-            get;set;
+            get; set;
         }
 
         public Snake(GameBoard gameBoard)
         {
             _gameBoard = gameBoard;
-            body = new List<Coordinate>();
+            Body = new List<Coordinate>();
             Coordinate baseCoordinate = new Coordinate(10, 10);
-            body.Add(baseCoordinate);
-            body.Add(baseCoordinate);
-            body.Add(baseCoordinate);
+            Body.Add(baseCoordinate);
+            Body.Add(baseCoordinate);
+            Body.Add(baseCoordinate);
             HeadPosition = baseCoordinate;
         }
         public void setDirection(ConsoleKeyInfo cki)
         {
-            Coordinate newDir = direction;
+            Coordinate newDir = _direction;
             if (cki.Key == ConsoleKey.UpArrow)
                 newDir = Coordinate.UP;
             else if (cki.Key == ConsoleKey.RightArrow)
@@ -47,14 +43,14 @@ namespace SnakeMess
                 newDir = Coordinate.DOWN;
             else if (cki.Key == ConsoleKey.LeftArrow)
                 newDir = Coordinate.LEFT;
-            if (!direction.isOpposite(newDir))
-                direction = newDir;
+            if (!_direction.isOpposite(newDir))
+                _direction = newDir;
         }
 
         public void moveSnake()
         {
-            body.Add(HeadPosition);
-            HeadPosition += direction;
+            Body.Add(HeadPosition);
+            HeadPosition += _direction;
             if (collisionCheck())
             {
                 _gameBoard.GameOver = true;
@@ -62,13 +58,10 @@ namespace SnakeMess
             }
 
             //Remove tail
-            _gameBoard.PrintElement(body.First(), ' ');
-            Console.SetCursorPosition(body.First().X, body.First().Y);
-            Console.Write(" ");
-            body.RemoveAt(0);
+            _gameBoard.PrintElement(Body.First(), ' ');
 
             // Move head and write the correct body symbol
-            _gameBoard.PrintElement(body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
+            _gameBoard.PrintElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
             _gameBoard.PrintElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
             if (_gameBoard.CheckForFood(HeadPosition))
             {
@@ -84,7 +77,7 @@ namespace SnakeMess
                     // Death by accidental self-cannibalism.
                     return true;
                 }*/
-            return body.Any(coord => coord.compare(HeadPosition))
+            return Body.Any(coord => coord.compare(HeadPosition))
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
                     || HeadPosition.X >= _gameBoard.Width
                     || HeadPosition.Y >= _gameBoard.Height; // Death by bounds

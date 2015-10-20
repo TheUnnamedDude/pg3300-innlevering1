@@ -10,6 +10,7 @@ namespace SnakeMess
         List<Coordinate> body;
         public static readonly char HEAD_SYMBOL = '@';
         public static readonly char TAIL_SYMBOL = '0';
+        public static readonly ConsoleColor SNAKE_COLOR = ConsoleColor.Yellow;
 
         Coordinate direction = Coordinate.DOWN;
         private GameBoard _gameBoard;
@@ -61,16 +62,19 @@ namespace SnakeMess
             }
 
             //Remove tail
+            _gameBoard.PrintElement(body.First(), ' ');
             Console.SetCursorPosition(body.First().X, body.First().Y);
             Console.Write(" ");
             body.RemoveAt(0);
 
             // Move head and write the correct body symbol
-            Console.SetCursorPosition(body.Last().X, Body.Last().Y);
-            Console.Write(TAIL_SYMBOL);
-            Console.SetCursorPosition(HeadPosition.X, HeadPosition.Y);
-            Console.Write(HEAD_SYMBOL);
-
+            _gameBoard.PrintElement(body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
+            _gameBoard.PrintElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
+            if (_gameBoard.CheckForFood(HeadPosition))
+            {
+                Body.Add(Body.First());
+                _gameBoard.SpawnFood();
+            }
         }
         public bool collisionCheck()//or can be passed point to check
         {
@@ -80,7 +84,7 @@ namespace SnakeMess
                     // Death by accidental self-cannibalism.
                     return true;
                 }*/
-            return body.Any(coord => coord.X == HeadPosition.X && coord.Y == HeadPosition.Y)
+            return body.Any(coord => coord.compare(HeadPosition))
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
                     || HeadPosition.X >= _gameBoard.Width
                     || HeadPosition.Y >= _gameBoard.Height; // Death by bounds

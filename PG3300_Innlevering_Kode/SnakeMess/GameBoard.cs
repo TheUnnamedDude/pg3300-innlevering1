@@ -17,22 +17,33 @@ namespace SnakeMess
         public int Height {get; private set;}
         private Snake _snake;
         List<Food> FoodList;
-        Snake snake;
         bool pause, gameOver;
 
-        public void spawnFood()
+        public void SpawnFood()
         {
-            var test = FoodList.Count();
-            while (test <= 0 )
+            if (_snake.Body.Count() + FoodList.Count() + 2 >= Width * Height)
             {
-                Coordinate temp = new Coordinate(rng.Next(0, Width), rng.Next(0, Height));
-                if (!snake.Body.Any(snakePart => (snakePart.X == temp.X && snakePart.Y == temp.Y))) ;
+                return;
+            }
+            while (true)
+            {
+                Coordinate foodCoord = new Coordinate(rng.Next(0, Width), rng.Next(0, Height));
+                if (!_snake.Body.Any(snakePart => snakePart.compare(foodCoord)))
                 {
-                    FoodList.Add(new Food(temp));
-                    FoodList.Last().Write();
+                    FoodList.Add(new Food(foodCoord));
+                    PrintElement(foodCoord, Food.FOOD_SYMBOL, Food.FOOD_COLOR);
+                    return;
                 }
             }
         }
+
+        public void PrintElement(Coordinate coord, char c, ConsoleColor color = ConsoleColor.White)
+        {
+            Console.ForegroundColor = color;
+            Console.SetCursorPosition(coord.X, coord.Y);
+            Console.Write(c);
+        }
+
         public GameBoard(int width, int height)
         {
             this.Width = width;
@@ -45,10 +56,11 @@ namespace SnakeMess
             _snake = new Snake(this);
             Paused = false;
             GameOver = false;
+            SpawnFood();
 
             while (!GameOver)
             {
-                
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo consoleKey = Console.ReadKey(true);
@@ -61,18 +73,20 @@ namespace SnakeMess
                     {
                         Paused = !Paused;
                     }
-                    if (Paused)
-                    {
-                        Thread.Sleep(300);
-                        Paused = !Paused;
-                        continue;
-                    }
                     _snake.setDirection(consoleKey);
                 }
+                if (Paused)
+                {
+                    continue;
+                }
                 _snake.moveSnake();
-                spawnFood();
                 Thread.Sleep(100);
             }
+        }
+
+        public bool CheckForFood(Coordinate coord)
+        {
+            return FoodList.Any(food => food.Position.compare(coord));
         }
     }
 }

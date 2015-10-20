@@ -4,7 +4,8 @@ namespace SnakeMess
 {
     class Food
     {
-        char foodSymbol = '$';
+        public static readonly char FOOD_SYMBOL = '$';
+        public static readonly ConsoleColor FOOD_COLOR = ConsoleColor.Green;
         Coordinate position;
 
         public Food(Coordinate position)

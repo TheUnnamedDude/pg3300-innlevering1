@@ -31,6 +31,12 @@ namespace SnakeMess
             return diff.X == 0 && diff.Y == 0;
         }
 
+        //TODO: Replace with operator overflow
+        public bool compare(Coordinate other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
         public static Coordinate operator +(Coordinate c1, Coordinate c2)
         {
             return new Coordinate(c1.X + c2.X, c1.Y + c2.Y);

@@ -59,6 +59,7 @@ namespace SnakeMess
 
             //Remove tail
             _gameBoard.PrintElement(Body.First(), ' ');
+            Body.RemoveAt(0);
 
             // Move head and write the correct body symbol
             _gameBoard.PrintElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);

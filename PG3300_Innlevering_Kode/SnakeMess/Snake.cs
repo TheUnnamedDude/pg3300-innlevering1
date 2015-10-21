@@ -11,20 +11,21 @@ namespace SnakeMess
         public static readonly char TAIL_SYMBOL = '0';
         public static readonly ConsoleColor SNAKE_COLOR = ConsoleColor.Yellow;
 
-        private Coordinate _direction = Coordinate.DOWN;
-        private GameBoard _gameBoard;
+        private Coordinate direction = Coordinate.DOWN;
+        private GameBoard gameBoard;
 
         public List<Coordinate> Body
         {
             get; private set;
         }
-        public Coordinate HeadPosition {
+        public Coordinate HeadPosition
+        {
             get; set;
         }
 
         public Snake(GameBoard gameBoard)
         {
-            _gameBoard = gameBoard;
+            this.gameBoard = gameBoard;
             Body = new List<Coordinate>();
             Coordinate baseCoordinate = new Coordinate(10, 10);
             Body.Add(baseCoordinate);
@@ -34,7 +35,7 @@ namespace SnakeMess
         }
         public void setDirection(ConsoleKeyInfo cki)
         {
-            Coordinate newDir = _direction;
+            Coordinate newDir = direction;
             if (cki.Key == ConsoleKey.UpArrow)
                 newDir = Coordinate.UP;
             else if (cki.Key == ConsoleKey.RightArrow)
@@ -43,31 +44,31 @@ namespace SnakeMess
                 newDir = Coordinate.DOWN;
             else if (cki.Key == ConsoleKey.LeftArrow)
                 newDir = Coordinate.LEFT;
-            if (!_direction.isOpposite(newDir))
-                _direction = newDir;
+            if (!direction.isOpposite(newDir))
+                direction = newDir;
         }
 
         public void moveSnake()
         {
             Body.Add(HeadPosition);
-            HeadPosition += _direction;
+            HeadPosition += direction;
             if (collisionCheck())
             {
-                _gameBoard.GameOver = true;
+                gameBoard.GameOver = true;
                 return;
             }
 
             //Remove tail
-            _gameBoard.PrintElement(Body.First(), ' ');
+            gameBoard.PrintElement(Body.First(), ' ');
             Body.RemoveAt(0);
 
             // Move head and write the correct body symbol
-            _gameBoard.PrintElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
-            _gameBoard.PrintElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
-            if (_gameBoard.CheckForFood(HeadPosition))
+            gameBoard.PrintElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
+            gameBoard.PrintElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
+            if (gameBoard.checkForFood(HeadPosition))
             {
                 Body.Add(Body.First());
-                _gameBoard.SpawnFood();
+                gameBoard.spawnFood();
             }
         }
         public bool collisionCheck()//or can be passed point to check
@@ -80,8 +81,8 @@ namespace SnakeMess
                 }*/
             return Body.Any(coord => coord.compare(HeadPosition))
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
-                    || HeadPosition.X >= _gameBoard.Width
-                    || HeadPosition.Y >= _gameBoard.Height; // Death by bounds
+                    || HeadPosition.X >= gameBoard.Width
+                    || HeadPosition.Y >= gameBoard.Height; // Death by bounds
         }
     }
 }

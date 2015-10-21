@@ -11,21 +11,23 @@ namespace SnakeMess
 
         public bool Paused {get; private set;}
         public bool GameOver {get; set;}
-
         public int Width {get; private set;}
         public int Height {get; private set;}
         private Snake _snake;
         List<Food> FoodList;
-        bool pause, gameOver;
+        Random random;
 
         public void SpawnFood()
         {
             if (_snake.Body.Count() + FoodList.Count() + 2 >= Width * Height)
+            {
+                GameOver = true;
                 return;
+            }
             while (true)
             {
-                Random rng = new Random();
-                Coordinate foodCoord = new Coordinate(rng.Next(0, Width), rng.Next(0, Height));
+                random= new Random();
+                Coordinate foodCoord = new Coordinate(random.Next(0, Width), random.Next(0, Height));
                 if (!_snake.Body.Any(snakePart => snakePart.compare(foodCoord)))
                 {
                     FoodList.Add(new Food(foodCoord));

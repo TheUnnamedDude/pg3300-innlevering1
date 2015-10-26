@@ -10,7 +10,7 @@ namespace TheCookieBakery
     {
         public VanillaDecorator(ICookie original) : base(original) { }
         
-        public string GetCookieDescription()
+        public override string GetCookieDescription()
         {
             return base.GetCookieDescription() + " with Vanilla";
         }

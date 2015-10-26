@@ -8,14 +8,14 @@ namespace TheCookieBakery
 {
     class BasicCookie : ICookie
     {
-        private string name;
+        private string type;
         public BasicCookie()
         {
-            name = "Basic Cookie";
+            type = "Basic Cookie";
         }
-        public override string GetCookieDescription()
+        public string GetCookieDescription()
         {
-            return name;
+            return type;
         }
 
        

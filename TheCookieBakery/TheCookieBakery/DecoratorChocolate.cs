@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    class DecoratorChocolate : ICookie
+    class DecoratorChocolate : CookieDecorator
     {
-        private string name;
-        public DecoratorChocolate()
+
+        public DecoratorChocolate(ICookie IC) : base(IC){ }
+        public override string GetCookieDescription()
         {
-            name = "Chocolate Cookie";
-        }
-        public string GetCookieDescription()
-        {
-            return name;
+            return base.GetCookieDescription() + " with Chocolate chips";
         }
     }
 }

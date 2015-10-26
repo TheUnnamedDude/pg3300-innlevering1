@@ -18,7 +18,6 @@ namespace TheCookieBakery
             _soldCookies = 0;
         }
 
-
     public void MakeCookie()
     {
 

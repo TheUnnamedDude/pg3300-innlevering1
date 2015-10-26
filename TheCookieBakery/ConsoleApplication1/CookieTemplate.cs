@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheCookieBakery
+namespace NewBakery
 {
-    abstract class ICookie
+    abstract class CookieTemplate
     {
-        string Name;
+        string Name { get; set; }
         public abstract string GetCookieDescription();
-
     }
 }

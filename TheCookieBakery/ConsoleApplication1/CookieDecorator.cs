@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheCookieBakery
+namespace ConsoleApplication1
 {
-    abstract class ICookie
+    class CookieDecorator
     {
-        public abstract string GetCookieDescription();
-
     }
 }

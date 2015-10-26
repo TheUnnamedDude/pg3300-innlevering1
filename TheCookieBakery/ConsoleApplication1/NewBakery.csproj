@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieDecorator.cs" />
     <Compile Include="CookieTemplate.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Program.cs" />

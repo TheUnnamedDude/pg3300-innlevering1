@@ -8,7 +8,6 @@ namespace NewBakery
 {
     abstract class CookieTemplate
     {
-        string Name { get; set; }
         public abstract string GetCookieDescription();
     }
 }

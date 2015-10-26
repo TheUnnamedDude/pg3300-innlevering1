@@ -17,12 +17,12 @@ namespace TheCookieBakery
         /// </summary>
         static void Main()
         {
-            
 
-            lock (lockedObject)
+
+            /*lock (lockedObject)
             {
 
-            }
+            }*/
         }
     }
 }

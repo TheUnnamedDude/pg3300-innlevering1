@@ -8,15 +8,15 @@ namespace TheCookieBakery
 {
     class MangoDecorator : ICookie
     {
-        private ICookie unDecorated;
-        protected MangoDecorator(ICar original)
+        private ICookie _ic;
+        protected MangoDecorator(ICookie ic)
         {
-            this.original = original;
+            _ic = ic;
         }
 
-        public virtual string GetDescription()
+        public string GetCookieDescription()
         {
-            return original.GetDescription();
+            return _ic.GetCookieDescription();
         }
     }
 }

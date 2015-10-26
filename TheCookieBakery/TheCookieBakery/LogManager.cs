@@ -8,7 +8,7 @@ namespace TheCookieBakery
     public class LogManager
     {
         private static LogManager instance;
-        public LogManager getInstance()
+        public static LogManager GetInstance()
         {
             if (instance == null)
             {
@@ -26,7 +26,7 @@ namespace TheCookieBakery
             Console.WriteLine(str);
         }
 
-        public void logCookiePurchase(Customer customer, ICookie cookie)
+        public void LogCookiePurchase(Customer customer, ICookie cookie)
         {
             log(string.Format("{} received cookie {}", customer.Name, cookie.GetCookieDescription()));
         }

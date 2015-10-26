@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CookieBakery
+namespace TheCookieBakery
 {
     public class LogManager
     {
@@ -26,7 +26,7 @@ namespace CookieBakery
             Console.WriteLine(str);
         }
 
-                public void logCookiePurchase(Customer customer, ICookie cookie)
+        public void logCookiePurchase(Customer customer, ICookie cookie)
         {
             log(string.Format("{} received cookie {}", customer.Name, cookie.GetCookieDescription()));
         }

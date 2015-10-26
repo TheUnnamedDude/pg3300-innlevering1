@@ -21,14 +21,14 @@ namespace TheCookieBakery
         {
         }
 
-        public void log(string str)
+        public void Log(string str)
         {
             Console.WriteLine(str);
         }
 
         public void LogCookiePurchase(Customer customer, ICookie cookie)
         {
-            log(string.Format("{} received cookie {}", customer.Name, cookie.GetCookieDescription()));
+            Log(string.Format("{} received cookie {}", customer.Name, cookie.GetCookieDescription()));
         }
     }
 }

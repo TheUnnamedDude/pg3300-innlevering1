@@ -59,12 +59,12 @@ namespace SnakeMess
             }
 
             //Remove tail
-            gameBoard.PrintElement(Body.First(), ' ');
+            gameBoard.printElement(Body.First(), ' ');
             Body.RemoveAt(0);
 
             // Move head and write the correct body symbol
-            gameBoard.PrintElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
-            gameBoard.PrintElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
+            gameBoard.printElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
+            gameBoard.printElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
             if (gameBoard.checkForFood(HeadPosition))
             {
                 Body.Add(Body.First());

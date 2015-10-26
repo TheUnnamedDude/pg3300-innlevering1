@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace TheCookieBakery
 {
     class CookieFactory
-    
+
     {
             public ICookie makeCookie()
             {
-                ICookie cookie = new ICookie;
+                ICookie cookie = new BasicCookie();
                 Random r = new Random();
-                int number = r.Next(3);
+                int number = r.Next(1,3);
 
                 switch (number)
                 {
@@ -24,6 +24,8 @@ namespace TheCookieBakery
                     case 3:
                         return new MangoDecorator(cookie);
                 }
-            }
+
+                return cookie;
+        }   
         }
     }

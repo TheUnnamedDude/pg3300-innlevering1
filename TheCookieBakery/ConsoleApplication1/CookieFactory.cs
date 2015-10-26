@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         public ICookie makeCookie()
         {
-            ICookie cookie = new ICookie;
+            ICookie cookie = new BasicCookie();
             Random r = new Random();
             int number = r.Next(3);
 

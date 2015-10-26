@@ -11,7 +11,7 @@ namespace TheCookieBakery
         private Object lockedObject = new object();
         private Customer fred;
         private Customer ted;
-        private Customer Greg;
+        private Customer greg;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

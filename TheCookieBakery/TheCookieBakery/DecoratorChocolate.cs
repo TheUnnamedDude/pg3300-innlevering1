@@ -13,7 +13,7 @@ namespace TheCookieBakery
         {
             name = "Chocolate Cookie";
         }
-        public string GetCookieDescription()
+        public override string GetCookieDescription()
         {
             return name;
         }

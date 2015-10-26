@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    class VanillaDecorator : ICookie
+    class VanillaDecorator : CookieDecorator
     {
-        public VanillaDecorator() 
-        {
-            name = "Vanilla Cookie";
-        }
+        public VanillaDecorator(ICookie original) : base(original) { }
+        
         public string GetCookieDescription()
         {
-            return name;
+            return base.GetCookieDescription() + " with Vanilla";
         }
     }
 }

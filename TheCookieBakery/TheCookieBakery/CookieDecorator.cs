@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    class CookieDecorator
+    abstract class CookieDecorator : ICookie
     {
+        ICookie IC;
+
+        protected CookieDecorator(ICookie original)
+        {
+            this.IC = original;
+        }
+
+        public virtual string GetCookieDescription()
+        {
+            return IC.GetCookieDescription();
+        }
     }
 }
+

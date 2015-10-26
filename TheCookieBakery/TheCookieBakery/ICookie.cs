@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    abstract class ICookie
+    interface ICookie
     {
-        public abstract string GetCookieDescription();
+        string GetCookieDescription();
 
     }
 }

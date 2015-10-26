@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicCookie.cs" />
+    <Compile Include="CookieDecorator.cs" />
     <Compile Include="DecoratorChocolate.cs" />
     <Compile Include="ICookie.cs" />
     <Compile Include="CookieBakery.cs" />

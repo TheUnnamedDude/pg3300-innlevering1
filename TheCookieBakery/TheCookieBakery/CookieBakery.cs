@@ -6,32 +6,35 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    class CookieBakery
+    public class CookieBakery
     {
 
-        private int _numberOfCookies { set; get; }
         private int _soldCookies { set; get; }
 
         private List<ICookie> _cookies;
+        private object cookieLock = new object();
 
         public CookieBakery() {
             _soldCookies = 0;
         }
 
-    public void MakeCookie()
-    {
+        public void MakeCookie()
+        {
 
-        /*ICookie cookie = new Cookie();
-        _cookies.add(cookie);*/
-    }
+            /*ICookie cookie = new Cookie();
+            _cookies.add(cookie);*/
+        }
 
         public void SellCookieTo(Customer customer)
         {
-            if (_numberOfCookies >= 1)
+            lock (cookieLock)
             {
-                /*System.WriteLine(customer + " recieved " + cookie.name + " number " + _soldCookies + 1);
-                numberOfCookies--;
-                soldCookies++;*/
+                if (_cookies.Count() >= 1)
+                {
+                    ICookie cookie = _cookies.Last();
+                    LogManager.GetInstance().LogCookiePurchase(customer, cookie);
+                    _cookies.Remove(cookie);
+                }
             }
         }
     }

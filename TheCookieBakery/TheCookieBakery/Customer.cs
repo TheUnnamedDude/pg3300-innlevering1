@@ -11,10 +11,12 @@ namespace TheCookieBakery
         public string Name {get; private set;}
         private Thread _thread;
         private int _interval;
+        private CookieBakery _bakery;
 
-        public Customer(String name, int interval)
+        public Customer(CookieBakery bakery, String name, int interval)
         {
             Name = name;
+            _bakery = bakery;
             _interval = interval;
             _thread = new Thread(Run);
             _thread.Start();
@@ -24,11 +26,7 @@ namespace TheCookieBakery
         {
             while (true)
             {
-                ICookie cookie = null; // TODO: ask mr bakery
-                if (cookie != null)
-                {
-                    LogManager.GetInstance().LogCookiePurchase(this, cookie);
-                }
+                _bakery.SellCookieTo(this);
                 Thread.Sleep(_interval);
             }
         }

@@ -11,11 +11,23 @@ namespace TheCookieBakery
     {
         private String _name;
         private Thread _thread;
+        private int _interval;
 
-        public Customer(String name)
+        public Customer(String name, int interval)
         {
             _name = name;
-            _thread = new Thread;
+            _interval = interval;
+            _thread = new Thread(Run);
+            _thread.Start();
+        }
+
+        public void Run()
+        {
+            while (true)
+            {
+
+                Thread.Sleep(_interval);
+            }
         }
     }
 }

@@ -14,25 +14,25 @@ namespace TheCookieBakery
 
         private List<ICookie> _cookies;
 
-        public CookieBakery {
+        public CookieBakery() {
             _soldCookies = 0;
         }
-        
-        
+
+
     public void MakeCookie()
     {
 
-        ICookie cookie = new Cookie();
-        _cookies.add(cookie);
+        /*ICookie cookie = new Cookie();
+        _cookies.add(cookie);*/
     }
 
         public void SellCookieTo(Customer customer)
         {
             if (_numberOfCookies >= 1)
             {
-                System.WriteLine(customer + " recieved " + cookie.name + " number " + _soldCookies + 1);
+                /*System.WriteLine(customer + " recieved " + cookie.name + " number " + _soldCookies + 1);
                 numberOfCookies--;
-                soldCookies++;
+                soldCookies++;*/
             }
         }
     }

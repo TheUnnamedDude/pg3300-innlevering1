@@ -8,12 +8,12 @@ namespace TheCookieBakery
 {
     class DecoratorChocolate : ICookie
     {
-        private string name;  
+        private string name;
         public DecoratorChocolate()
         {
             name = "Chocolate Cookie";
         }
-        public override string GetCookieDescription()
+        public string GetCookieDescription()
         {
             return name;
         }

@@ -13,10 +13,6 @@ namespace TheCookieBakery
         private int _soldCookies { set; get; }
 
         private List<ICookie> _cookies;
-
-        public CookieBakery {
-            _soldCookies = 0;
-        }
         
         
     public void MakeCookie()

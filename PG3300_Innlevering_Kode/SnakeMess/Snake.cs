@@ -59,12 +59,12 @@ namespace SnakeMess
             }
 
             //Remove tail
-            gameBoard.printElement(Body.First(), ' ');
+            Body.First().printElement(' ');
             Body.RemoveAt(0);
 
             // Move head and write the correct body symbol
-            gameBoard.printElement(Body.Last(), TAIL_SYMBOL, SNAKE_COLOR);
-            gameBoard.printElement(HeadPosition, HEAD_SYMBOL, SNAKE_COLOR);
+            Body.Last().printElement(TAIL_SYMBOL, SNAKE_COLOR);
+            HeadPosition.printElement(HEAD_SYMBOL, SNAKE_COLOR);
             if (gameBoard.checkForFood(HeadPosition))
             {
                 Body.Add(Body.First());
@@ -73,12 +73,6 @@ namespace SnakeMess
         }
         public bool collisionCheck()//or can be passed point to check
         {
-            /*foreach (Coordinate x in body)
-                if (x.X == HeadPosition.X && x.Y == HeadPosition.Y)
-                {
-                    // Death by accidental self-cannibalism.
-                    return true;
-                }*/
             return Body.Any(coord => coord.compare(HeadPosition))
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
                     || HeadPosition.X >= gameBoard.Width

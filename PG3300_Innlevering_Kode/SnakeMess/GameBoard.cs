@@ -15,7 +15,6 @@ namespace SnakeMess
         public int Height {get; private set;}
         private Snake snake;
         List<Food> FoodList;
-        Random random;
 
         public GameBoard(int width, int height)
         {
@@ -32,22 +31,14 @@ namespace SnakeMess
             }
             while (true)
             {
-                random= new Random();
-                Coordinate foodCoord = new Coordinate(random.Next(0, Width), random.Next(0, Height));
-                if (!snake.Body.Any(snakePart => snakePart.compare(foodCoord)))
+                Food food = new Food(Width, Height);
+                if (!snake.Body.Any(snakePart => snakePart.compare(food.Position)))
                 {
-                    FoodList.Add(new Food(foodCoord));
-                    printElement(foodCoord, Food.FOOD_SYMBOL, Food.FOOD_COLOR);
+                    FoodList.Add(food);
+                    food.print();
                     return;
                 }
             }
-        }
-
-        public void printElement(Coordinate coord, char c, ConsoleColor color = ConsoleColor.White)
-        {
-            Console.ForegroundColor = color;
-            Console.SetCursorPosition(coord.X, coord.Y);
-            Console.Write(c);
         }
 
         public void startGame()

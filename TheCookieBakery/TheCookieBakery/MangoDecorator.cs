@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    class MangoDecorator : ICookie
+    class MangoDecorator : CookieDecorator
     {
-        private ICookie _ic;
-        protected MangoDecorator(ICookie ic)
-        {
-            _ic = ic;
-        }
+        public MangoDecorator(ICookie IC) : base(IC) { }
 
-        public string GetCookieDescription()
+        public override string GetCookieDescription()
         {
-            return _ic.GetCookieDescription();
+            return base.GetCookieDescription() + " with mango flavor, wtf? is that any good?";
         }
     }
 }

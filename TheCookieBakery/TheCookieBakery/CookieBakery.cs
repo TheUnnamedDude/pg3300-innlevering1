@@ -39,9 +39,10 @@ namespace TheCookieBakery
 
         public void MakeCookie()
         {
-
-            /*ICookie cookie = new Cookie();
-            _cookies.add(cookie);*/
+            lock(cookieLock)
+            {
+                _cookies.Add(CookieFactory.MakeCookie());
+            }
         }
 
         public void SellCookieTo(Customer customer)
@@ -54,10 +55,10 @@ namespace TheCookieBakery
                     LogManager.GetInstance().LogCookiePurchase(customer, cookie);
                     _cookies.Remove(cookie);
                 }
-                else
+                /*else
                 {
                     LogManager.GetInstance().Log("Nope, nothing mr. {0}(debug)", customer.Name);
-                }
+                }*/
             }
         }
     }

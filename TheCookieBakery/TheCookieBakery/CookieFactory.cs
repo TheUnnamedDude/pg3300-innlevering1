@@ -9,7 +9,7 @@ namespace TheCookieBakery
     class CookieFactory
 
     {
-            public ICookie makeCookie()
+            public static ICookie MakeCookie()
             {
                 ICookie cookie = new BasicCookie();
                 Random r = new Random();
@@ -26,6 +26,6 @@ namespace TheCookieBakery
                 }
 
                 return cookie;
-        }   
+        }
         }
     }

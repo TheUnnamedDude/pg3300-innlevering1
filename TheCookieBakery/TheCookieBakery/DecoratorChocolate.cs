@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheCookieBakery
 {
-    public class DecoratorChocolate : ICookie
+    class DecoratorChocolate : ICookie
     {
         private string name;  
         public DecoratorChocolate()

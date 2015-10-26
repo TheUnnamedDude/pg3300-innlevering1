@@ -8,5 +8,7 @@ namespace NewBakery
 {
     class Customer
     {
+
+        
     }
 }

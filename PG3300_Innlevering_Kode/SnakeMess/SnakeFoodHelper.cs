@@ -5,7 +5,17 @@ using System.Text;
 
 namespace SnakeMess
 {
-    class Class1
+    class SnakeFoodHelper
     {
+        public int Width
+        {
+            get; set;
+        }
+        public int Height
+        {
+            get; set;
+        }
+
+
     }
 }

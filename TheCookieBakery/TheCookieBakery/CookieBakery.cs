@@ -13,17 +13,11 @@ namespace TheCookieBakery
         private int _soldCookies { set; get; }
 
         private List<ICookie> _cookies;
-<<<<<<< HEAD
-        
-        
-=======
 
         public CookieBakery() {
             _soldCookies = 0;
         }
 
-
->>>>>>> 22c556256474e5ae8b133f6cd524bf5fefabc7e5
     public void MakeCookie()
     {
 

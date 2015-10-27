@@ -33,7 +33,7 @@ namespace TheCookieBakery
 
         public void LogCookiePurchase(Customer customer, ICookie cookie)
         {
-            Log("{0} received cookie {1}", customer.Name, cookie.GetCookieDescription());
+            Log("{0} received {1}", customer.Name, cookie.GetCookieDescription());
         }
     }
 }

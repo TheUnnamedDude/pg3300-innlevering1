@@ -26,9 +26,14 @@ namespace TheCookieBakery
             Console.WriteLine(str);
         }
 
+        public void Log(string format, params object[] args)
+        {
+            Log(string.Format(format, args));
+        }
+
         public void LogCookiePurchase(Customer customer, ICookie cookie)
         {
-            Log(string.Format("{} received cookie {}", customer.Name, cookie.GetCookieDescription()));
+            Log("{0} received {1}", customer.Name, cookie.GetCookieDescription());
         }
     }
 }

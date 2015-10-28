@@ -8,21 +8,13 @@ namespace TheCookieBakery
 {
     public class Program
     {
-        private Object lockedObject = new object();
-        private Customer fred;
-        private Customer ted;
-        private Customer greg;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         static void Main()
         {
-
-
-            /*lock (lockedObject)
-            {
-
-            }*/
+            CookieBakery cookieBakery = new CookieBakery();
+            cookieBakery.RunMainLoop();
         }
     }
 }

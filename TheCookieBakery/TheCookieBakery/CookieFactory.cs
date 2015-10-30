@@ -9,27 +9,22 @@ namespace TheCookieBakery
     class CookieFactory
 
     {
-            public static ICookie MakeCookie()
-            {
-                ICookie cookie = new BasicCookie();
-                Random r = new Random();
-                int number = r.Next(1,3);
+        public static ICookie MakeCookie()
+        {
+            ICookie cookie = new BasicCookie();
+            Random r = new Random();
+            int number = r.Next(1, 3);
 
-                switch (number)
-                {
-                    case 1:
-                        return new VanillaDecorator(cookie);
-                    case 2:
-                        return new ChocolateDecorator(cookie);
-                    case 3:
-                        return new MangoDecorator(cookie);
-                }
+            switch (number) {
+                case 1:
+                    return new VanillaDecorator(cookie);
+                case 2:
+                    return new ChocolateDecorator(cookie);
+                case 3:
+                    return new MangoDecorator(cookie);
+            }
 
-                return cookie;
-<<<<<<< HEAD
-            }   
-=======
-        }
->>>>>>> 1f03e979c92b211731f42520c7da28168ccbb67a
+            return cookie;
         }
     }
+}

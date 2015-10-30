@@ -30,13 +30,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TheCookieBakery.CookieFactory" Collapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CookieFactory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TheCookieBakery.Customer" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
@@ -82,6 +75,13 @@
     <Position X="9.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheCookieBakery.CookieFactory" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CookieFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="TheCookieBakery.ICookie" Collapsed="true">

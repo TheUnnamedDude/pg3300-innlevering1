@@ -7,9 +7,6 @@ namespace SnakeMess
 {
     class Snake
     {
-        public static readonly char HEAD_SYMBOL = '@';
-        public static readonly char TAIL_SYMBOL = '0';
-        public static readonly ConsoleColor SNAKE_COLOR = ConsoleColor.Yellow;
 
         private Coordinate direction = Coordinate.DOWN;
         private GameBoard gameBoard;
@@ -59,12 +56,12 @@ namespace SnakeMess
             }
 
             //Remove tail
-            Body.First().printElement(' ');
+            gameBoard.renderer.render(RenderingFactory.emptySymbol(), Body.First());
             Body.RemoveAt(0);
 
             // Move head and write the correct body symbol
-            Body.Last().printElement(TAIL_SYMBOL, SNAKE_COLOR);
-            HeadPosition.printElement(HEAD_SYMBOL, SNAKE_COLOR);
+            gameBoard.renderer.render(RenderingFactory.tailSymbol(), Body.Last());
+            gameBoard.renderer.render(RenderingFactory.headSymbol(), HeadPosition);
             if (gameBoard.checkForFood(HeadPosition))
             {
                 Body.Add(Body.First());

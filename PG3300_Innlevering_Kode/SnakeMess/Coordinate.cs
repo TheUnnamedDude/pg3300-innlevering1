@@ -30,15 +30,6 @@ namespace SnakeMess
             return diff.X == 0 && diff.Y == 0;
         }
 
-
-
-        public void printElement(char c, ConsoleColor color = ConsoleColor.White)
-        {
-            Console.ForegroundColor = color;
-            Console.SetCursorPosition(X, Y);
-            Console.Write(c);
-        }
-
         //TODO: Replace with operator overflow
         public bool compare(Coordinate other)
         {

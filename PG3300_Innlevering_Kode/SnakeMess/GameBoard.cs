@@ -14,12 +14,14 @@ namespace SnakeMess
         public int Width {get; private set;}
         public int Height {get; private set;}
         private Snake snake;
+        public Renderer renderer;
         List<Food> FoodList;
 
-        public GameBoard(int width, int height)
+        public GameBoard(int width, int height, Renderer renderer)
         {
             this.Width = width;
             this.Height = height;
+            this.renderer = renderer;
         }
 
         public void eatFood(Coordinate foodPos)
@@ -41,7 +43,7 @@ namespace SnakeMess
                 if (!snake.Body.Any(snakePart => snakePart.compare(food.Position)))
                 {
                     FoodList.Add(food);
-                    food.Position.printElement(Food.FOOD_SYMBOL, Food.FOOD_COLOR);
+                    renderer.render(RenderingFactory.foodSymbol(), food.Position);
                     return;
                 }
             }

@@ -11,7 +11,7 @@ namespace TheCookieBakery
         private string type;
         public BasicCookie()
         {
-            type = "Basic Cookie";
+            type = "Cookie";
         }
         public string GetCookieDescription()
         {

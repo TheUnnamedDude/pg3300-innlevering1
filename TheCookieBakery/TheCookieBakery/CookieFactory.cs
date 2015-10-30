@@ -26,6 +26,10 @@ namespace TheCookieBakery
                 }
 
                 return cookie;
+<<<<<<< HEAD
+            }   
+=======
         }
+>>>>>>> 1f03e979c92b211731f42520c7da28168ccbb67a
         }
     }

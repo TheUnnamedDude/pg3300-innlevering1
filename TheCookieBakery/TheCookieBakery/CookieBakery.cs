@@ -16,6 +16,7 @@ namespace TheCookieBakery
         private int _soldCookies { set; get; }
         private readonly Random random = new Random();
 
+        private int _bakedCookies { set; get; }//Just to test.
         private List<ICookie> _cookies;
         private object cookieLock = new object();
 
@@ -23,6 +24,7 @@ namespace TheCookieBakery
         {
             _cookies = new List<ICookie>();
             _soldCookies = 0;
+            _bakedCookies = 0;
             _fred = new Customer(this, "Fred", 1000);
             _ted = new Customer(this, "Ted", 666);
             _greg = new Customer(this, "Greg", 987);
@@ -41,7 +43,9 @@ namespace TheCookieBakery
         {
             lock(cookieLock)
             {
+                _bakedCookies++;
                 _cookies.Add(CookieFactory.MakeCookie());
+                LogManager.GetInstance().Log(_bakedCookies + " Cookies made");
             }
         }
 

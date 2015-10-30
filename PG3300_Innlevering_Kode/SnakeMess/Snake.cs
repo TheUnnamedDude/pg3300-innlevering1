@@ -41,7 +41,7 @@ namespace SnakeMess
                 newDir = Coordinate.DOWN;
             else if (cki.Key == ConsoleKey.LeftArrow)
                 newDir = Coordinate.LEFT;
-            if (!direction.isOpposite(newDir))
+            if (direction + newDir != 0)
                 direction = newDir;
         }
 
@@ -70,7 +70,7 @@ namespace SnakeMess
         }
         public bool collisionCheck()//or can be passed point to check
         {
-            return Body.Any(coord => coord.compare(HeadPosition))
+            return Body.Contains(HeadPosition)
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
                     || HeadPosition.X >= gameBoard.Width
                     || HeadPosition.Y >= gameBoard.Height; // Death by bounds

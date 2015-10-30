@@ -26,7 +26,7 @@ namespace SnakeMess
 
         public void eatFood(Coordinate foodPos)
         {
-            FoodList.Remove(FoodList.Find(food => food.Position.compare(foodPos)));
+            FoodList.Remove(FoodList.Find(food => food.Position == foodPos));
             spawnFood();
         }
 
@@ -40,7 +40,7 @@ namespace SnakeMess
             while (true)
             {
                 Food food = new Food(Width, Height);
-                if (!snake.Body.Any(snakePart => snakePart.compare(food.Position)))
+                if (!snake.Body.Any(snakePart => food.Position == snakePart))
                 {
                     FoodList.Add(food);
                     renderer.render(RenderingFactory.foodSymbol(), food.Position);
@@ -79,7 +79,7 @@ namespace SnakeMess
 
         public bool checkForFood(Coordinate coord)
         {
-            return FoodList.Any(food => food.Position.compare(coord));
+            return FoodList.Any(food => food.Position == coord);
         }
     }
 }

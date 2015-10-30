@@ -7,23 +7,6 @@ namespace SnakeMess
 {
     class GameController
     {
-
-        bool originalCursorVisible = Console.CursorVisible;
-
-        public String Title { get; set; }
-        public GameBoard Gametable {
-            get
-            {
-                return Gametable;
-
-            }
-            set
-            {
-                new GameBoard(Console.WindowWidth, Console.WindowHeight, RenderingFactory.createRenderer());
-            }
-        }
-
-
         public static void Main(string[] args)
         {
 			bool originalCursorVisible = Console.CursorVisible; // Save the state

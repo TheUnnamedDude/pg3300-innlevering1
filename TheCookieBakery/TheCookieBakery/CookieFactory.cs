@@ -7,25 +7,22 @@ using System.Threading.Tasks;
 namespace TheCookieBakery
 {
     class CookieFactory
-
     {
-            public static ICookie MakeCookie()
+        public static ICookie MakeCookie()
+        {
+            Random r = new Random();
+
+            switch (r.Next(0, 2))
             {
-                ICookie cookie = new BasicCookie();
-                Random r = new Random();
-                int number = r.Next(1,3);
-
-                switch (number)
-                {
-                    case 1:
-                        return new VanillaDecorator(cookie);
-                    case 2:
-                        return new ChocolateDecorator(cookie);
-                    case 3:
-                        return new MangoDecorator(cookie);
-                }
-
-                return cookie;
+                case 0:
+                    return new VanillaDecorator(new BasicCookie());
+                case 1:
+                    return new ChocolateDecorator(new BasicCookie());
+                case 2:
+                    return new MangoDecorator(new BasicCookie());
+                default:
+                    return new BasicCookie();
             }
         }
     }
+}

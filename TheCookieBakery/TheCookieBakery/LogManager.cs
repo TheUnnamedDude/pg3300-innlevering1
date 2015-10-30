@@ -31,9 +31,14 @@ namespace TheCookieBakery
             Log(string.Format(format, args));
         }
 
-        public void LogCookiePurchase(Customer customer, ICookie cookie)
+        public void LogCookiePurchase(Customer customer, ICookie cookie, int currentCookie)
         {
-            Log("{0} received {1}", customer.Name, cookie.GetCookieDescription());
+            Log("{0,80}", string.Format("{0} received {1}", customer.Name, string.Format(cookie.GetCookieDescription(), currentCookie)));
+        }
+
+        public void LogCookieBaked(int currentCookie)
+        {
+            Log("Bakery made cookie #{0}", currentCookie);
         }
     }
 }

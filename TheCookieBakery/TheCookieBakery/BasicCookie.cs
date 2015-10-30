@@ -11,13 +11,13 @@ namespace TheCookieBakery
         private string type;
         public BasicCookie()
         {
-            type = "Cookie";
+            type = "Cookie #{0}";
         }
         public string GetCookieDescription()
         {
             return type;
         }
 
-       
+
     }
 }

@@ -13,29 +13,32 @@ namespace TheCookieBakery
         private Customer _ted;
         private Customer _greg;
 
-        private int _soldCookies { set; get; }
+        public int SoldCookies { private set; get; }
         private readonly Random random = new Random();
 
-        private int _bakedCookies { set; get; }//Just to test.
+        public int BakedCookies { private set; get; }//Just to test.
         private List<ICookie> _cookies;
         private object cookieLock = new object();
+
+        public int Limit {private set; get; }
 
         public CookieBakery()
         {
             _cookies = new List<ICookie>();
-            _soldCookies = 0;
-            _bakedCookies = 0;
+            SoldCookies = 0;
+            BakedCookies = 0;
+            Limit = 64;
             _fred = new Customer(this, "Fred", 1000);
-            _ted = new Customer(this, "Ted", 666);
-            _greg = new Customer(this, "Greg", 987);
+            _ted = new Customer(this, "Ted", 1000);
+            _greg = new Customer(this, "Greg", 1000);
         }
 
         public void RunMainLoop()
         {
-            while (true)
+            while (BakedCookies < Limit)
             {
                 MakeCookie();
-                Thread.Sleep(random.Next(0, 10000));
+                Thread.Sleep(random.Next(500, 800));
             }
         }
 
@@ -43,9 +46,10 @@ namespace TheCookieBakery
         {
             lock(cookieLock)
             {
-                _bakedCookies++;
-                _cookies.Add(CookieFactory.MakeCookie());
-                LogManager.GetInstance().Log(_bakedCookies + " Cookies made");
+                BakedCookies++;
+                ICookie cookie = CookieFactory.MakeCookie();
+                _cookies.Add(cookie);
+                LogManager.GetInstance().LogCookieBaked(BakedCookies);
             }
         }
 
@@ -56,7 +60,8 @@ namespace TheCookieBakery
                 if (_cookies.Count() >= 1)
                 {
                     ICookie cookie = _cookies.Last();
-                    LogManager.GetInstance().LogCookiePurchase(customer, cookie);
+                    SoldCookies ++;
+                    LogManager.GetInstance().LogCookiePurchase(customer, cookie, SoldCookies);
                     _cookies.Remove(cookie);
                 }
                 /*else

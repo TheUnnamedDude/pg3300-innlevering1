@@ -24,7 +24,7 @@ namespace TheCookieBakery
 
         public void Run()
         {
-            while (true)
+            while (_bakery.Limit > _bakery.SoldCookies)
             {
                 _bakery.SellCookieTo(this);
                 Thread.Sleep(_interval);

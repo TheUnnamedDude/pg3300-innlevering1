@@ -22,6 +22,12 @@ namespace SnakeMess
             this.Height = height;
         }
 
+        public void eatFood(Coordinate foodPos)
+        {
+            FoodList.Remove(FoodList.Find(food => food.Position.compare(foodPos)));
+            spawnFood();
+        }
+
         public void spawnFood()
         {
             if (snake.Body.Count() + FoodList.Count() + 2 >= Width * Height)
@@ -35,7 +41,7 @@ namespace SnakeMess
                 if (!snake.Body.Any(snakePart => snakePart.compare(food.Position)))
                 {
                     FoodList.Add(food);
-                    food.print();
+                    food.Position.printElement(Food.FOOD_SYMBOL, Food.FOOD_COLOR);
                     return;
                 }
             }

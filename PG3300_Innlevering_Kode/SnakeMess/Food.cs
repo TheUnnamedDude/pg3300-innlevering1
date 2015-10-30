@@ -21,10 +21,5 @@ namespace SnakeMess
             Random random = new Random();
             Position = new Coordinate(random.Next(0, maxWidth), random.Next(0, maxHeight));
         }
-
-        public void print()
-        {
-            Position.printElement(FOOD_SYMBOL, FOOD_COLOR);
-        }
     }
 }

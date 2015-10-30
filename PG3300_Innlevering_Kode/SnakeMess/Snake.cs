@@ -68,7 +68,7 @@ namespace SnakeMess
             if (gameBoard.checkForFood(HeadPosition))
             {
                 Body.Add(Body.First());
-                gameBoard.spawnFood();
+                gameBoard.eatFood(HeadPosition);
             }
         }
         public bool collisionCheck()//or can be passed point to check

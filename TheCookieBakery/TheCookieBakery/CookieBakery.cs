@@ -8,11 +8,6 @@ namespace TheCookieBakery
 {
     public class CookieBakery
     {
-
-        private Customer _fred;
-        private Customer _ted;
-        private Customer _greg;
-
         public int SoldCookies { private set; get; }
         private readonly Random random = new Random();
 
@@ -28,9 +23,9 @@ namespace TheCookieBakery
             SoldCookies = 0;
             BakedCookies = 0;
             Limit = 64;
-            _fred = new Customer(this, "Fred", 1000);
-            _ted = new Customer(this, "Ted", 1000);
-            _greg = new Customer(this, "Greg", 1000);
+            new Customer(this, "Fred", 1000);
+            new Customer(this, "Ted", 1000);
+            new Customer(this, "Greg", 1000);
         }
 
         public void RunMainLoop()

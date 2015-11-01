@@ -9,31 +9,36 @@ namespace SnakeMess
     {
         public static void Main(string[] args)
         {
-			bool originalCursorVisible = Console.CursorVisible; // Save the state
-            string originalTitle = Console.Title;
-            ConsoleColor originalColor = Console.ForegroundColor;
+            // Store the original console state so we can restore it after the game is over
+            var originalTitle = Console.Title;
+            var originalColor = Console.ForegroundColor;
+            var originalCursorVisible = Console.CursorVisible;
 
             // I pressed ctrl + c to stop the game too many times...
             Console.CancelKeyPress += delegate
             {
                 Console.Title = originalTitle;
-			    Console.CursorVisible = originalCursorVisible;
+                Console.CursorVisible = originalCursorVisible;
                 Console.ForegroundColor = originalColor;
-			    Console.Clear();
+                Console.Clear();
             };
-            
-			Console.Clear(); // Lets clear the console window
+
+            // Prepare the console
+            Console.Clear(); // Lets clear the console window
             Console.CursorVisible = false;
-        	Console.Title = "Westerdals Oslo ACT - SNAKE";
-        	Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Title = "Westerdals Oslo ACT - SNAKE";
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            // Create a gameboard and start the game
             var gameBoard = new SnakeBoard(Console.WindowWidth, Console.WindowHeight, RenderingFactory.createRenderer());
             gameBoard.startGame();
+
+            // Set the cursor visible back to the original value to leave the console in a usable state...
             Console.ResetColor();
-			// Set the cursor visible back to the original value to leave the console in a usable state...
             Console.Title = originalTitle;
-			Console.CursorVisible = originalCursorVisible;
             Console.ForegroundColor = originalColor;
-			Console.Clear();
+            Console.CursorVisible = originalCursorVisible;
+            Console.Clear();
         }
     }
 }

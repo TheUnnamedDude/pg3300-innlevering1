@@ -6,22 +6,15 @@ using System.Threading;
 
 namespace SnakeMess
 {
-    class GameBoard
+    class GameBoard : Game2DLayout
     {
 
-        public bool Paused {get; private set;}
-        public bool GameOver {get; set;}
-        public int Width {get; private set;}
-        public int Height {get; private set;}
+
         private Snake snake;
-        public Renderer renderer;
         List<Food> FoodList;
 
-        public GameBoard(int width, int height, Renderer renderer)
+        public GameBoard(int width, int height, Renderer renderer) : base(width, height, renderer)
         {
-            this.Width = width;
-            this.Height = height;
-            this.renderer = renderer;
         }
 
         public void eatFood(Coordinate foodPos)

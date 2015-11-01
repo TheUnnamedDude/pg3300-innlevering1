@@ -75,5 +75,9 @@ namespace SnakeMess
                     || HeadPosition.X >= gameBoard.Width
                     || HeadPosition.Y >= gameBoard.Height; // Death by bounds
         }
+        public void eatFood()
+        {
+
+        }
     }
 }

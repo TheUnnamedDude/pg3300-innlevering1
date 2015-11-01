@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SnakeMess
 {
@@ -9,7 +8,7 @@ namespace SnakeMess
     {
 
         private Coordinate direction = Coordinate.DOWN;
-        private GameBoard gameBoard;
+        private SnakeBoard gameBoard;
 
         public List<Coordinate> Body
         {
@@ -20,7 +19,7 @@ namespace SnakeMess
             get; set;
         }
 
-        public Snake(GameBoard gameBoard)
+        public Snake(SnakeBoard gameBoard)
         {
             this.gameBoard = gameBoard;
             Body = new List<Coordinate>();
@@ -62,11 +61,7 @@ namespace SnakeMess
             // Move head and write the correct body symbol
             gameBoard.renderer.render(RenderingFactory.tailSymbol(), Body.Last());
             gameBoard.renderer.render(RenderingFactory.headSymbol(), HeadPosition);
-            if (gameBoard.checkForFood(HeadPosition))
-            {
-                Body.Add(Body.First());
-                gameBoard.eatFood(HeadPosition);
-            }
+            
         }
         public bool collisionCheck()//or can be passed point to check
         {
@@ -75,9 +70,9 @@ namespace SnakeMess
                     || HeadPosition.X >= gameBoard.Width
                     || HeadPosition.Y >= gameBoard.Height; // Death by bounds
         }
-        public void eatFood()
+        public void grow()
         {
-
+            Body.Add(Body.Last());
         }
     }
 }

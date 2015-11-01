@@ -26,7 +26,7 @@ namespace SnakeMess
             Console.CursorVisible = false;
         	Console.Title = "Westerdals Oslo ACT - SNAKE";
         	Console.ForegroundColor = ConsoleColor.Yellow;
-            var gameBoard = new GameBoard(Console.WindowWidth, Console.WindowHeight, RenderingFactory.createRenderer());
+            var gameBoard = new SnakeBoard(Console.WindowWidth, Console.WindowHeight, RenderingFactory.createRenderer());
             gameBoard.startGame();
             Console.ResetColor();
 			// Set the cursor visible back to the original value to leave the console in a usable state...

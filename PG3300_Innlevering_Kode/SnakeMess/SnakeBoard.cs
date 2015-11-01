@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace SnakeMess
 {
-    class GameBoard : Game2DLayout
+    class SnakeBoard : Game2DLayout
     {
-
-
         private Snake snake;
         List<Food> FoodList;
 
-        public GameBoard(int width, int height, Renderer renderer) : base(width, height, renderer)
+        public SnakeBoard(int width, int height, Renderer renderer) : base(width, height, renderer)
         {
-        }
-
-        public void eatFood(Coordinate foodPos)
-        {
-            FoodList.Remove(FoodList.Find(food => food.Position == foodPos));
-            spawnFood();
         }
 
         public void spawnFood()
@@ -53,6 +44,7 @@ namespace SnakeMess
             // Liker ikke game-loop koden, forslag?
             while (!GameOver)
             {
+                consume();
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo consoleKey = Console.ReadKey(true);
@@ -73,6 +65,15 @@ namespace SnakeMess
         public bool checkForFood(Coordinate coord)
         {
             return FoodList.Any(food => food.Position == coord);
+        }
+
+        public void consume()
+        {
+            //Kan gjøre en try-catch, med expression istedetfor test. så fjerner bare om den er der-.
+            if (FoodList.Any(food => food.Position == snake.HeadPosition))
+            {
+                FoodList.Remove(FoodList.Find(food => food.Position == snake.HeadPosition));
+            }
         }
     }
 }

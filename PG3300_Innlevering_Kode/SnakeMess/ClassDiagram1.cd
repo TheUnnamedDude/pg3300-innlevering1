@@ -30,11 +30,11 @@
       <FileName>Food.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SnakeMess.GameBoard">
+  <Class Name="SnakeMess.SnakeBoard">
     <Position X="6" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgggAQBAAAAAAAACAAAEAABAAAQAAACAAAAAAAgAA=</HashCode>
-      <FileName>GameBoard.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAACAAAAAABAAAQAAACAAAAAAAAAA=</HashCode>
+      <FileName>SnakeBoard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SnakeMess.GameController">
@@ -54,7 +54,7 @@
   <Class Name="SnakeMess.Snake">
     <Position X="7.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAIAAAAgABAABAAAAAAIAEAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAEAAAAIAAAAgABAABAAAAAAIAEAAAAAAAAAAA=</HashCode>
       <FileName>Snake.cs</FileName>
     </TypeIdentifier>
   </Class>

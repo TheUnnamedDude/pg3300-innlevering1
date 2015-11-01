@@ -35,7 +35,7 @@ namespace SnakeMess
 
         public void startGame()
         {
-            snake = new Snake(this);
+            snake = new Snake();
             FoodList = new List<Food>();
             Paused = false;
             GameOver = false;
@@ -56,17 +56,19 @@ namespace SnakeMess
                 }
                 if (Paused)
                     continue;
-
                 snake.moveSnake();
+                if (snake.collisionCheck(Width, Height))
+                {
+                    GameOver = true;
+                    break;
+                }
                 plotMovedSnake();
-                GameOver = snake.collisionCheck(Width, Height);
                 Thread.Sleep(100);
             }
         }
 
         public void consume()
         {
-            //Kan gjøre en try-catch, med expression istedetfor test. så fjerner bare om den er der-.
             if (FoodList.Any(food => food.Position == snake.HeadPosition))
             {
                 FoodList.Remove(FoodList.Find(food => food.Position == snake.HeadPosition));

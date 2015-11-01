@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="GameController.cs" />
     <Compile Include="SnakeBoard.cs" />
-    <Compile Include="GameState.cs" />
+    <Compile Include="Game2DLayout.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="Food.cs" />
     <Compile Include="Coordinate.cs" />

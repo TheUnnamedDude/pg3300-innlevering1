@@ -8,7 +8,6 @@ namespace SnakeMess
     {
 
         private Coordinate direction = Coordinate.DOWN;
-        private SnakeBoard gameBoard;
 
         public List<Coordinate> Body
         {
@@ -19,9 +18,8 @@ namespace SnakeMess
             get; set;
         }
 
-        public Snake(SnakeBoard gameBoard)
+        public Snake()
         {
-            this.gameBoard = gameBoard;
             Body = new List<Coordinate>();
             Coordinate baseCoordinate = new Coordinate(10, 10);
             Body.Add(baseCoordinate);
@@ -55,8 +53,8 @@ namespace SnakeMess
         {
             return Body.Contains(HeadPosition)
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
-                    || HeadPosition.X > width
-                    || HeadPosition.Y > height; // Death by bounds
+                    || HeadPosition.X >= width
+                    || HeadPosition.Y >= height; // Death by bounds
         }
         public void grow()
         {

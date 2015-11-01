@@ -14,6 +14,9 @@ namespace TheCookieBakery
         static void Main()
         {
             CookieBakery cookieBakery = new CookieBakery();
+            new Customer(cookieBakery, "Fred", 1000);
+            new Customer(cookieBakery, "Ted", 1000);
+            new Customer(cookieBakery, "Greg", 1000);
             cookieBakery.RunMainLoop();
         }
     }

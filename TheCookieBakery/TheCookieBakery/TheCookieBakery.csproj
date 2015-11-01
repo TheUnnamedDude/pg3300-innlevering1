@@ -57,6 +57,7 @@
     <Compile Include="MangoDecorator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Store.cs" />
     <Compile Include="VanillaDecorator.cs" />
     <Compile Include="LogManager.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

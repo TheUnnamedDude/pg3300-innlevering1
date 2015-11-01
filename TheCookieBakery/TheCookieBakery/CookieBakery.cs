@@ -6,26 +6,24 @@ using System.Threading;
 
 namespace TheCookieBakery
 {
-    public class CookieBakery
+    public class CookieBakery : Store
     {
         public int SoldCookies { private set; get; }
         private readonly Random random = new Random();
 
         public int BakedCookies { private set; get; }//Just to test.
-        private List<ICookie> _cookies;
+        private List<ICookie> _cookieBasket;
         private object cookieLock = new object();
 
         public int Limit {private set; get; }
 
         public CookieBakery()
         {
-            _cookies = new List<ICookie>();
+            _cookieBasket = new List<ICookie>();
             SoldCookies = 0;
             BakedCookies = 0;
             Limit = 64;
-            new Customer(this, "Fred", 1000);
-            new Customer(this, "Ted", 1000);
-            new Customer(this, "Greg", 1000);
+            
         }
 
         public void RunMainLoop()
@@ -43,27 +41,32 @@ namespace TheCookieBakery
             {
                 BakedCookies++;
                 ICookie cookie = CookieFactory.MakeCookie();
-                _cookies.Add(cookie);
+                _cookieBasket.Add(cookie);
                 LogManager.GetInstance().LogCookieBaked(BakedCookies);
             }
         }
 
-        public void SellCookieTo(Customer customer)
+        public void sellTo(Customer customer)
         {
             lock (cookieLock)
             {
-                if (_cookies.Count() >= 1)
+                if (_cookieBasket.Count() >= 1)
                 {
-                    ICookie cookie = _cookies.Last();
+                    ICookie cookie = _cookieBasket.Last();
                     SoldCookies ++;
                     LogManager.GetInstance().LogCookiePurchase(customer, cookie, SoldCookies);
-                    _cookies.Remove(cookie);
+                    _cookieBasket.Remove(cookie);
                 }
                 /*else
                 {
                     LogManager.GetInstance().Log("Nope, nothing mr. {0}(debug)", customer.Name);
                 }*/
             }
+        }
+
+        public bool isOpen()
+        {
+            return (SoldCookies - Limit) <= 0;
         }
     }
 }

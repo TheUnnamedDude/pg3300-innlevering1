@@ -13,10 +13,10 @@ namespace TheCookieBakery
         private int _interval;
         private Store _store;
 
-        public Customer(CookieBakery bakery, String name, int interval)
+        public Customer(Store store, String name, int interval)
         {
             Name = name;
-            _store = bakery;
+            _store = store;
             _interval = interval;
             _thread = new Thread(Run);
             _thread.Start();

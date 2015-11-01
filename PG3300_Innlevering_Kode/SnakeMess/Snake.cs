@@ -27,6 +27,7 @@ namespace SnakeMess
             Body.Add(baseCoordinate);
             Body.Add(baseCoordinate);
             Body.Add(baseCoordinate);
+            Body.Add(baseCoordinate);
             HeadPosition = baseCoordinate;
         }
         public void setDirection(ConsoleKeyInfo cki)
@@ -48,27 +49,14 @@ namespace SnakeMess
         {
             Body.Add(HeadPosition);
             HeadPosition += direction;
-            if (collisionCheck())
-            {
-                gameBoard.GameOver = true;
-                return;
-            }
-
-            //Remove tail
-            gameBoard.renderer.render(RenderingFactory.emptySymbol(), Body.First());
             Body.RemoveAt(0);
-
-            // Move head and write the correct body symbol
-            gameBoard.renderer.render(RenderingFactory.tailSymbol(), Body.Last());
-            gameBoard.renderer.render(RenderingFactory.headSymbol(), HeadPosition);
-            
         }
-        public bool collisionCheck()//or can be passed point to check
+        public bool collisionCheck(int width, int height)//or can be passed point to check
         {
             return Body.Contains(HeadPosition)
                     || HeadPosition.X < 0 || HeadPosition.Y < 0
-                    || HeadPosition.X >= gameBoard.Width
-                    || HeadPosition.Y >= gameBoard.Height; // Death by bounds
+                    || HeadPosition.X > width
+                    || HeadPosition.Y > height; // Death by bounds
         }
         public void grow()
         {

@@ -58,13 +58,10 @@ namespace SnakeMess
                     continue;
 
                 snake.moveSnake();
+                plotMovedSnake();
+                GameOver = snake.collisionCheck(Width, Height);
                 Thread.Sleep(100);
             }
-        }
-
-        public bool checkForFood(Coordinate coord)
-        {
-            return FoodList.Any(food => food.Position == coord);
         }
 
         public void consume()
@@ -73,7 +70,19 @@ namespace SnakeMess
             if (FoodList.Any(food => food.Position == snake.HeadPosition))
             {
                 FoodList.Remove(FoodList.Find(food => food.Position == snake.HeadPosition));
+                snake.grow();
+                spawnFood();
             }
         }
+        public void plotMovedSnake()
+        {
+            //Remove tail
+            renderer.render(RenderingFactory.emptySymbol(), snake.Body.First());
+
+            // Move head and write the correct body symbol
+            renderer.render(RenderingFactory.tailSymbol(), snake.Body.Last());
+            renderer.render(RenderingFactory.headSymbol(), snake.HeadPosition);
+        }
+
     }
 }
